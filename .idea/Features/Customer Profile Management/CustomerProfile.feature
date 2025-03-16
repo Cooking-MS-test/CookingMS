@@ -14,3 +14,6 @@ Feature: Customer Profile Management
     Given multiple customers with dietary preferences
     When the chef accesses a customer's profile
     Then the chef sees the correct dietary preferences and allergies
+
+
+

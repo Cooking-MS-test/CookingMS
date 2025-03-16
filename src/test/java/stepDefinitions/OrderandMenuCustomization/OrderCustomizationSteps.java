@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.OrderandMenuCustomization;
 
 import io.cucumber.java.en.*;
 import static org.junit.jupiter.api.Assertions.*;
