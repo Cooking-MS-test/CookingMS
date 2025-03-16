@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.CustomerProfileManagement;
 
 import static org.junit.Assert.*;
 
