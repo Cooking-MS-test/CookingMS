@@ -1,9 +1,17 @@
 package models;
 
 public class Chef {
-    public void viewCustomerPreferences(Customer customer) {
-        System.out.println("Customer: " + customer.getName());
-        System.out.println("Dietary Preferences: " + customer.getDietaryPreferences());
-        System.out.println("Allergies: " + customer.getAllergies());
+    private String id;
+    private String name;
+    private String specialization;
+
+    public Chef(String id, String name, String specialization) {
+        this.id = id;
+        this.name = name;
+        this.specialization = specialization;
     }
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public String getSpecialization() { return specialization; }
 }
