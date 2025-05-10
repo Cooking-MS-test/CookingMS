@@ -1,5 +1,7 @@
 package models;
 
+import Notification_And_Alerts.Ingredient;
+
 public class InventoryItem {
     private Ingredient ingredient;
     private int quantity;

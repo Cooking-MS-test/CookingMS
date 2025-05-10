@@ -2,7 +2,7 @@ package stepDefinitions.CustomerProfileManagement;
 
 import static org.junit.Assert.*;
 
-import models.Customer;
+import Notification_And_Alerts.Customer;
 import io.cucumber.java.en.*;
 import java.util.HashMap;
 import java.util.Map;
