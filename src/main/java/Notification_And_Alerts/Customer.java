@@ -1,5 +1,8 @@
 package Notification_And_Alerts;
 
+import models.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
@@ -8,12 +11,21 @@ public class Customer {
     private List<Meal> upcomingMeals;
     private String dietaryPreferences; // e.g., "Vegan", "Gluten-Free"
     private String allergies; // e.g., "Peanuts, Shellfish"
+    private List<Order> orders;
 
     public Customer(String name) {
         this.name = name;
     }
     public void addUpcomingMeal(Meal meal) {
         upcomingMeals.add(meal);
+    }
+    public void addOrder(Order order) {
+        if (orders == null) orders = new ArrayList<>();
+        orders.add(order);
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public void setDietaryPreferences(String dietaryPreferences) {
@@ -41,5 +53,9 @@ public class Customer {
     // Getter for allergies
     public String getAllergies() {
         return this.allergies;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
