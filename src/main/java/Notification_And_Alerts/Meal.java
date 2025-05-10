@@ -7,12 +7,17 @@ public class Meal {
     private String name;
     private LocalDate deliveryDate;
     private LocalDate cookingDate;
+    private double price;
 
     // Constructor, Getters, Setters
     public Meal(String name, LocalDate deliveryDate, LocalDate cookingDate) {
         this.name = name;
         this.deliveryDate = deliveryDate;
         this.cookingDate = cookingDate;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     // Example getters
