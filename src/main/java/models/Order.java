@@ -1,5 +1,8 @@
 package models;
 
+import Notification_And_Alerts.Customer;
+import Notification_And_Alerts.Meal;
+
 import java.util.Date;
 import java.util.List;
 
