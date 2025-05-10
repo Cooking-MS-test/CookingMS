@@ -13,6 +13,17 @@ public class Customer {
     private String allergies; // e.g., "Peanuts, Shellfish"
     private List<Order> orders;
 
+
+
+
+    // Helper method for profile summary
+    public String getDietarySummary() {
+        return String.format(
+                "Dietary Preferences: %s | Allergies: %s",
+                dietaryPreferences, allergies
+        );
+    }
+
     public Customer(String name) {
         this.name = name;
     }
@@ -57,5 +68,9 @@ public class Customer {
 
     public String getName() {
         return this.name;
+    }
+
+    public Object getEmail() {
+        return this.email;
     }
 }
