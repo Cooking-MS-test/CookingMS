@@ -1,6 +1,6 @@
 package InventoryAndSupplierManagement;
 
-import Notification_And_Alerts.Ingredient;
+import models.Ingredient;
 import Notification_And_Alerts.NotificationService;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package Notification_And_Alerts;
 
+import models.Ingredient;
+
 public class StockMonitor {
     private NotificationService notificationService;
 

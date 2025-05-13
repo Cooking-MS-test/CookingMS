@@ -1,7 +1,7 @@
 package OrderAndMenuCustomization;
 
-import Notification_And_Alerts.Chef;
-import Notification_And_Alerts.Ingredient;
+import Zahi.Chef;
+import models.Ingredient;
 
 import java.util.Collections;
 import java.util.List;

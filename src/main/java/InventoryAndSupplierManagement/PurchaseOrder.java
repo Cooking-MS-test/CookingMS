@@ -1,8 +1,5 @@
 package InventoryAndSupplierManagement;
 
-import Notification_And_Alerts.Ingredient;
-import Notification_And_Alerts.NotificationService;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
