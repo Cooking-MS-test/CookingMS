@@ -18,7 +18,16 @@ public class Customer {
     private Set<DietaryRestriction> restrictions;
 
 
-    public Customer() {}
+
+    public Customer(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public Customer() {
+
+    }
+
     public void setRestrictions(Set<DietaryRestriction> restrictions){
          this.restrictions = restrictions;
     }
@@ -34,34 +43,34 @@ public class Customer {
         );
     }
 
+
     public Customer(String name) {
         this.name = name;
     }
     public void addUpcomingMeal(Meal meal) {
         upcomingMeals.add(meal);
     }
-    public String reorder(String idOrder){
-        String message;
-        Order reOrder=null;
+
+
+
+
+    public String reorder(String mealName) {
+        // Find the meal in past orders
         for (Order order : orders) {
-            if(order.getOrderId()==idOrder){
-                reOrder = order;
+            if (order.containsMeal(mealName)) {
+                // If the meal exists, reorder it and create a new order
+                Order reorder = order.createReorder();
+                addOrder(reorder);  // Add the new order to the customer's order list
+                return "Order Found and ReOrder done successfully: RE-" + reorder.getOrderId();
             }
-
-
         }
-        if(reOrder== null){
-            message = "Order Not Found";
-            return message;
-        }
-        else{
-            reOrder.createReorder();
-            message = "Order Found and ReOrder done successfully";
-            return message;
-        }
-
-
+        return "Order not found";  // If no meal found in past orders
     }
+
+
+
+
+
     public void addOrder(Order order) {
         if (orders == null) orders = new ArrayList<>();
         orders.add(order);
@@ -78,15 +87,20 @@ public class Customer {
             this.dietaryPreferences = dietaryPreferences.trim();
         }
     }
-    public List<String> getPastOrders(){
-
-        for (Order order : orders) {
-
-            String orderr=order.getMealsName();
-            pastOrder.add(orderr);
+    public List<String> getPastOrders() {
+        pastOrder.clear(); // clear previous results
+        if (orders != null) {
+            for (Order order : orders) {
+                String mealNames = order.getMeals().stream()
+                        .map(Meal::getName)
+                        .reduce((a, b) -> a + ", " + b)
+                        .orElse("No meals");
+                pastOrder.add(mealNames);
+            }
         }
         return pastOrder;
     }
+
 
     // Setter for allergies
     public void setAllergies(String allergies) {
