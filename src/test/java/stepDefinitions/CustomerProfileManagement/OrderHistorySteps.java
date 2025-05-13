@@ -31,6 +31,7 @@ public class OrderHistorySteps {
     @When("they check their order history")
     public void theyCheckTheirOrderHistory() {
         retrievedOrders = customerHistory.getPastOrders();
+
     }
 
     @Then("they see a list of past orders")
