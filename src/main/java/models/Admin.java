@@ -2,27 +2,50 @@ package models;
 
 import Notification_And_Alerts.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class Admin {
+private String Name;
+private List<Customer> customers=new ArrayList<Customer>();
 
-    private final OrderHistory historyService;
+public Admin(String name) {
+    Name = name;
+}
+public Admin(String name, Customer customer){
+    Name = name;
+    this.customers.add(customer);
+}
+public String getName() {
+    return Name;
+}
+public List<Customer> getCustomers() {
+    return customers;
+}
+public void setName(String name) {
+    Name = name;
+}
+public void addCustomer(Customer customer){
+    customers.add(customer);
+}
+public List<String> getPastOrders() {
+   List<String> allOrders = new ArrayList<>();
+    for (Customer customerrrr : customers) {
+        if (!customerrrr.getPastOrders().isEmpty()) {
 
-    public Admin(OrderHistory historyService) {
-        this.historyService = historyService;
+            allOrders= Stream.concat(allOrders.stream(), customerrrr.getPastOrders().stream())
+                    .collect(Collectors.toList());
+        }
+
     }
-
-    public void analyzeTrends(List<Customer> customers) {
-        Map<String, Long> stats = historyService.getMealPopularityStats(customers);
-        System.out.println("Meal Popularity Report:");
-        stats.forEach((meal, count) ->
-                System.out.printf("%s: %d orders%n", meal, count));
-    }
+    return allOrders;
+}
 
 
-    public void analyzeOrders(OrderHistory history) {
-        System.out.println("Analyzing orders: " + history.getPastOrders());
-    }
+
+
 }
 // PUSHING
