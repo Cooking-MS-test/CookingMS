@@ -11,8 +11,13 @@ public class Ingredient {
     private double lastKnownPrice;
     private Set<String> dietaryFlags; // e.g., "vegan", "gluten-free"
     private boolean isAvailable;
+    private Set<DietaryRestriction> restrictions;
 
-
+    public Ingredient(String name, boolean available, Set<DietaryRestriction> restrictions) {
+        this.name = name;
+        this.isAvailable = available;
+        this.restrictions = restrictions;
+    }
 
     public Ingredient(String name, Set<String> dietaryFlags) {
         this.name = name;

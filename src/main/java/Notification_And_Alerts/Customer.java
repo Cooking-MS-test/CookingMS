@@ -3,7 +3,9 @@ package Notification_And_Alerts;
 import models.Order;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Customer {
     private String name;
@@ -13,9 +15,16 @@ public class Customer {
     private String allergies; // e.g., "Peanuts, Shellfish"
     private List<Order> orders;
    private List<String> pastOrder = new ArrayList<>();
+    private Set<DietaryRestriction> restrictions;
 
 
     public Customer() {}
+    public void setRestrictions(Set<DietaryRestriction> restrictions){
+         this.restrictions = restrictions;
+    }
+    public boolean hasRestriction(DietaryRestriction restriction) {
+        return restrictions.contains(restriction);
+    }
 
     // Helper method for profile summary
     public String getDietarySummary() {
