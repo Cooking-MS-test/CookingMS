@@ -9,37 +9,36 @@ import java.util.*;
 public class Order {
     private String orderId;
     private Customer customer;
-    private List<Meal> meals;
+    private List<Meal> meals=new ArrayList<>();
     private LocalDateTime orderDate;
-
+    private   Meal m;
     private List<Order> orders = new ArrayList<>();
+    private String mealName;
 
     private double totalAmount;
 
 
     // Constructor/Getters/Setters
-    public Order(String orderId, Customer customer,List<Meal> meals, double totalAmount) {
+    public Order(String orderId, Customer customer,String meal,double price) {
         this.orderId = orderId;
         this.customer = customer;
-        this.totalAmount = totalAmount;
-        this.meals = meals;
+        mealName=meal;
+         m=new Meal(mealName,price);
+        this.meals.add(m);
         this.orderDate = LocalDateTime.now();
-        this.totalAmount = totalAmount;
+    }
+    public Order(String orderId,Customer customer,List<Meal> meals) {
+        this.orderId = orderId;
+        this.customer = customer;
+        this.meals = meals;
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public List<Order> getOrders() {
-        return Collections.unmodifiableList(orders); // Returns read-only view
-    }
     private double calculateTotal() {
         return meals.stream().mapToDouble(Meal::getPrice).sum();
     }
     // New method for reordering
-    public Order createReorder() {
-        return new Order(generateNewOrderId(), customer, meals, calculateTotal());
+    public void createReorder() {
+        new Order(generateNewOrderId(), customer, meals);
     }
 
    /* private String generateNewOrderId() {
@@ -58,8 +57,13 @@ public class Order {
     public Customer getCustomer() { return customer; }
     public List<Meal> getMeals() { return meals; }
     public LocalDateTime getOrderDate() { return orderDate; }
+    public String getMealsName(){
 
-    public Object getTotalAmount() {
+       return mealName;
+    }
+
+    public Double getTotalAmount() {
+       totalAmount=calculateTotal();
         return totalAmount;
     }
 }

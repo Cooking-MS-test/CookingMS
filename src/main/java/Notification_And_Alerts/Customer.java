@@ -12,9 +12,10 @@ public class Customer {
     private String dietaryPreferences; // e.g., "Vegan", "Gluten-Free"
     private String allergies; // e.g., "Peanuts, Shellfish"
     private List<Order> orders;
+   private List<String> pastOrder = new ArrayList<>();
 
 
-
+    public Customer() {}
 
     // Helper method for profile summary
     public String getDietarySummary() {
@@ -29,6 +30,28 @@ public class Customer {
     }
     public void addUpcomingMeal(Meal meal) {
         upcomingMeals.add(meal);
+    }
+    public String reorder(String idOrder){
+        String message;
+        Order reOrder=null;
+        for (Order order : orders) {
+            if(order.getOrderId()==idOrder){
+                reOrder = order;
+            }
+
+
+        }
+        if(reOrder== null){
+            message = "Order Not Found";
+            return message;
+        }
+        else{
+            reOrder.createReorder();
+            message = "Order Found and ReOrder done successfully";
+            return message;
+        }
+
+
     }
     public void addOrder(Order order) {
         if (orders == null) orders = new ArrayList<>();
@@ -46,6 +69,15 @@ public class Customer {
             this.dietaryPreferences = dietaryPreferences.trim();
         }
     }
+    public List<String> getPastOrders(){
+
+        for (Order order : orders) {
+
+            String orderr=order.getMealsName();
+            pastOrder.add(orderr);
+        }
+        return pastOrder;
+    }
 
     // Setter for allergies
     public void setAllergies(String allergies) {
@@ -55,6 +87,7 @@ public class Customer {
             this.allergies = allergies.trim();
         }
     }
+
 
     // Getter for dietary preferences
     public String getDietaryPreferences() {
