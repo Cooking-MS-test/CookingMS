@@ -17,7 +17,6 @@ public class InvoiceService {
     }
 
     public void sendInvoice(Customer customer, String invoice) {
-        // Send to customer's email/phone (existing contact info)
         System.out.println("Sent invoice to " + customer.getName() + ":\n" + invoice);
     }
 }
