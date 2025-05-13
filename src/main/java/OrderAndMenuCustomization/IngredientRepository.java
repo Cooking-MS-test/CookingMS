@@ -1,6 +1,6 @@
 package OrderAndMenuCustomization;
 
-import Notification_And_Alerts.Ingredient;
+import models.Ingredient;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package SchedualingAndTaskManagement;
+package Zahi;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,12 +9,16 @@ public class Task {
     private String description;
     private String requiredExpertise;
     private LocalDateTime dueTime;
+    private String taskName;
+    private String assignedChef;
 
-    public Task(String description, String requiredExpertise) {
+    public Task(String description, LocalDateTime dueTime, String requiredExpertise) {
         this.id = "TASK-" + UUID.randomUUID().toString().substring(0, 6);
         this.description = description;
         this.requiredExpertise = requiredExpertise;
-        this.dueTime = LocalDateTime.now().plusHours(2); // Default: due in 2 hours
+        this.taskName = taskName;
+        this.assignedChef = assignedChef;
+        this.dueTime = dueTime;
     }
 
     public String getRequiredExpertise() {

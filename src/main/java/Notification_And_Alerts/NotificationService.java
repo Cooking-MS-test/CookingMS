@@ -1,6 +1,8 @@
 package Notification_And_Alerts;
 
 
+import models.Ingredient;
+
 public class NotificationService {
     public String generateAlertMessage(Ingredient ingredient) {
         return String.format(

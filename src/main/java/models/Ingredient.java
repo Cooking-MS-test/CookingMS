@@ -1,4 +1,6 @@
-package Notification_And_Alerts;
+package models;
+
+import Notification_And_Alerts.DietaryRestriction;
 
 import java.util.Set;
 
@@ -13,9 +15,9 @@ public class Ingredient {
     private boolean isAvailable;
     private Set<DietaryRestriction> restrictions;
 
-    public Ingredient(String name, boolean available, Set<DietaryRestriction> restrictions) {
+    public Ingredient(String name) {
         this.name = name;
-        this.isAvailable = available;
+        this.isAvailable = isAvailable;
         this.restrictions = restrictions;
     }
 
@@ -50,7 +52,9 @@ public class Ingredient {
 
     // Getters and setters
 
-
+    public Set<DietaryRestriction> getRestrictions() {
+        return restrictions;
+    }
 
     // Constructor
     public Ingredient(String name, int stock, int threshold, String unit) {

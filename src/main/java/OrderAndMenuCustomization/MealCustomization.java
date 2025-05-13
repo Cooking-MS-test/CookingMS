@@ -1,7 +1,7 @@
 package OrderAndMenuCustomization;
 
 import Notification_And_Alerts.Customer;
-import Notification_And_Alerts.Ingredient;
+import models.Ingredient;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
