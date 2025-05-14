@@ -18,7 +18,7 @@ Feature: Ingredient Stock Tracking and Restocking Suggestions
       | ingredient   | threshold | current_stock |
       | Flour        | 10        | 8             |
       | Sugar        | 5         | 3             |
-      | Olive Oil    | 15        | 12            |
+      | Olive Oil    | 15        | 13            |
 
   Scenario Outline: No restocking suggestion when stock is above threshold
     Given the kitchen manager is monitoring ingredient stock levels
