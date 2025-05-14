@@ -1,5 +1,8 @@
 package stepDefinitions.NotificationsandAlerts;
 
+import Notification_And_Alerts.StockMonitor;
+import Zahi.StockCheckResult;
+import models.Ingredient;
 import io.cucumber.java.en.*;
 import static org.junit.Assert.*;
 
@@ -10,6 +13,11 @@ public class StockNotificationSteps {
     private int threshold;
     private String notificationMessage;
     private boolean notificationSent;
+    private String systemMessage;
+
+    // Assuming you have a mock NotificationService
+    private Notification_And_Alerts.NotificationService notificationService = new Notification_And_Alerts.NotificationService();
+    private StockMonitor stockMonitor = new StockMonitor(notificationService);
 
     @Given("the system monitors stock levels for ingredients")
     public void theSystemMonitorsStockLevelsForIngredients() {
@@ -30,15 +38,18 @@ public class StockNotificationSteps {
 
     @When("the system checks the stock levels")
     public void the_system_checks_the_stock_levels() {
-        if (stock < threshold) {
-            notificationSent = true;
-            String unitText = "units"; // Correct singular/plural form
-            notificationMessage = "Alert: Stock for " + ingredient + " is low. Only " + stock + " " + unitText + " remaining!";
-        } else {
-            notificationSent = false;
-            notificationMessage = "No notification sent";
-        }
+        Ingredient ingredientObject = new Ingredient(ingredient, threshold, stock);
+        StockMonitor stockMonitor = new StockMonitor(notificationService);
+
+        // Perform the stock check
+        StockCheckResult result = stockMonitor.checkStock(ingredientObject);
+
+        notificationSent = result.isNotificationSent();
+        notificationMessage = result.getNotificationMessage();
+        systemMessage = result.getSystemMessage();  // Add this to capture the system message
     }
+
+
 
     @Then("the system should notify the kitchen manager about {string}")
     public void the_system_should_notify_the_kitchen_manager_about(String ingredient) {
@@ -64,6 +75,6 @@ public class StockNotificationSteps {
     @And("the system should display {string}")
     public void the_system_should_display(String successMessage) {
         String expectedSuccessMessage = notificationSent ? "Notification sent successfully." : "No action needed.";
-        assertEquals("Success message mismatch!", expectedSuccessMessage, successMessage);
+        assertEquals("Success message mismatch!", expectedSuccessMessage, systemMessage);
     }
 }

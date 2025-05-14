@@ -6,12 +6,14 @@ import models.Ingredient;
 public class StockMonitor {
     private NotificationService notificationService;
 
+
     public StockMonitor(NotificationService notificationService) {
+
         this.notificationService = notificationService;
     }
 
     public StockCheckResult checkStock(Ingredient ingredient) {
-        if (ingredient.isStockLow()) {  // This must return true when stock < threshold
+        if (ingredient.isStockLow()) {  // Check if stock is below threshold
             String message = notificationService.generateLowStockAlert(ingredient);
             return new StockCheckResult(true, message, "Notification sent successfully.");
         } else {

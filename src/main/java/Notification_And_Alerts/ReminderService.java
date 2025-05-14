@@ -1,14 +1,18 @@
 package Notification_And_Alerts;
 
 import Zahi.Chef;
+import java.time.format.DateTimeFormatter;
 
 public class ReminderService {
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     // For Customers
     public String createDeliveryReminderMessage(Meal meal) {
         return String.format(
                 "Reminder: Your %s will be delivered on %s",
                 meal.getName(),
-                meal.getDeliveryDate()
+                meal.getDeliveryDate().format(DATE_FORMATTER)
         );
     }
 
@@ -18,12 +22,13 @@ public class ReminderService {
         System.out.println("Sent to customer: " + message);
     }
 
+
     // For Chefs
     public String createCookingNotificationMessage(Meal meal) {
         return String.format(
                 "Cooking Task: Prepare %s on %s",
                 meal.getName(),
-                meal.getCookingDate()
+                meal.getCookingDate().format(DATE_FORMATTER)
         );
     }
 

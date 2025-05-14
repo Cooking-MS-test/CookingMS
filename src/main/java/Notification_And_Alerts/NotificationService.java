@@ -13,8 +13,7 @@ public class NotificationService {
     }
     public String generateLowStockAlert(Ingredient ingredient) {
         return String.format("Alert: Stock for %s is low. Only %d units remaining!",
-                ingredient.getName(),
-                ingredient.getStock());
+                ingredient.getName(), ingredient.getStock());
     }
 
     public void sendNotification(String message) {
@@ -23,5 +22,4 @@ public class NotificationService {
     }
     public String getNoNotificationMessage() {
         return "No notification sent";
-    }
-}
+    }}
