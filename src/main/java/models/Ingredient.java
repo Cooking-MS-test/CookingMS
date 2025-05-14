@@ -14,6 +14,9 @@ public class Ingredient {
     private Set<String> dietaryFlags; // e.g., "vegan", "gluten-free"
     private boolean isAvailable;
     private Set<DietaryRestriction> restrictions;
+    private double price;
+
+
     public Ingredient(String name, int threshold, int currentStock) {
         this.name = name;
         this.threshold = threshold;
@@ -96,6 +99,9 @@ public class Ingredient {
     public int getStock() { return currentStock; }
     public int getThreshold() { return threshold; }
     public boolean needsRestock() { return needsRestock; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
 
     // Business Logic: Check if stock is low
     public boolean isStockLow() {
