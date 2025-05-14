@@ -7,13 +7,18 @@ import java.util.Set;
 public class Ingredient {
     private String name;
     private boolean needsRestock;
-    private double currentStock;
-    private double threshold;
+    private int currentStock;
+    private int threshold;
     private String unit; // kg, lbs, etc.
     private double lastKnownPrice;
     private Set<String> dietaryFlags; // e.g., "vegan", "gluten-free"
     private boolean isAvailable;
     private Set<DietaryRestriction> restrictions;
+    public Ingredient(String name, int threshold, int currentStock) {
+        this.name = name;
+        this.threshold = threshold;
+        this.currentStock = currentStock;
+    }
 
     public Ingredient(String name) {
         this.name = name;
@@ -38,7 +43,7 @@ public class Ingredient {
 
 
 
-    public Ingredient(String name, double threshold, String unit) {
+    public Ingredient(String name, int threshold, String unit) {
         this.name = name;
         this.threshold = threshold;
         this.unit = unit;
@@ -49,6 +54,9 @@ public class Ingredient {
     public boolean needsRestocking() {
         return currentStock < threshold;
     }
+    public void setCurrentStock(int stock) { this.currentStock = stock; }
+
+
 
     // Getters and setters
 
@@ -85,8 +93,8 @@ public class Ingredient {
 
     // Getters & Setters
     public String getName() { return name; }
-    public double getStock() { return currentStock; }
-    public double getThreshold() { return threshold; }
+    public int getStock() { return currentStock; }
+    public int getThreshold() { return threshold; }
     public boolean needsRestock() { return needsRestock; }
 
     // Business Logic: Check if stock is low
