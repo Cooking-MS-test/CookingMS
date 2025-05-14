@@ -1,5 +1,6 @@
 package Notification_And_Alerts;
 
+import Zahi.StockCheckResult;
 import models.Ingredient;
 
 public class StockMonitor {
@@ -9,13 +10,14 @@ public class StockMonitor {
         this.notificationService = notificationService;
     }
 
-    public void checkStockLevel(Ingredient ingredient) {
-        if (ingredient.isStockLow()) {
-            String message = notificationService.generateAlertMessage(ingredient);
-            notificationService.sendNotification(message);
-            System.out.println("Notification sent successfully.");
+    public StockCheckResult checkStock(Ingredient ingredient) {
+        if (ingredient.isStockLow()) {  // This must return true when stock < threshold
+            String message = notificationService.generateLowStockAlert(ingredient);
+            return new StockCheckResult(true, message, "Notification sent successfully.");
         } else {
-            System.out.println("No action needed.");
+            return new StockCheckResult(false,
+                    notificationService.getNoNotificationMessage(),
+                    "No action needed.");
         }
     }
 }

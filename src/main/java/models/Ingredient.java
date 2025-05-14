@@ -105,6 +105,8 @@ public class Ingredient {
 
     // Business Logic: Check if stock is low
     public boolean isStockLow() {
+        // Add defensive programming
+        if (threshold <= 0) return false; // invalid threshold
         return currentStock < threshold;
     }
 
