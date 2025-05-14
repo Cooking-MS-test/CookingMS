@@ -25,6 +25,10 @@ public class Meal {
         this.deliveryDate = deliveryDate;
     }
 
+    public void setCookingDate(LocalDateTime cookingDate) {
+        this.cookingDate = cookingDate;
+    }
+
     public double getPrice() {
         return price;
     }

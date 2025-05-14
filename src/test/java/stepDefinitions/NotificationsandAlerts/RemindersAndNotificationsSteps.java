@@ -1,32 +1,37 @@
 package stepDefinitions.NotificationsandAlerts;
 
+import Notification_And_Alerts.ReminderService;
+import Notification_And_Alerts.Meal;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class RemindersAndNotificationsSteps {
 
-    private String meal;
-    private String deliveryDate;
-    private String cookingDate;
     private String customerReminder;
     private String chefNotification;
+    private Meal meal;
+    private ReminderService reminderService = new ReminderService();
+
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     // Step Definitions for Customer Reminders
 
     @Given("the customer has an upcoming meal delivery for {string} on {string}")
-    public void the_customer_has_an_upcoming_meal_delivery_for_on(String meal, String deliveryDate) {
-        this.meal = meal;
-        this.deliveryDate = deliveryDate;
+    public void the_customer_has_an_upcoming_meal_delivery_for_on(String mealName, String deliveryDateStr) {
+        LocalDate date = LocalDate.parse(deliveryDateStr, formatter);
+        meal = new Meal(mealName, 0.0);
+        meal.setDeliveryDate(date.atStartOfDay());
     }
 
     @When("the system sends a reminder for the delivery")
     public void the_system_sends_a_reminder_for_the_delivery() {
-        this.customerReminder = "Reminder: Your " + meal + " will be delivered on " + deliveryDate;
+        customerReminder = reminderService.createDeliveryReminderMessage(meal);
     }
 
     @Then("the customer should receive a reminder message: {string}")
@@ -37,14 +42,15 @@ public class RemindersAndNotificationsSteps {
     // Step Definitions for Chef Notifications
 
     @Given("the chef has a scheduled cooking task for {string} on {string}")
-    public void the_chef_has_a_scheduled_cooking_task_for_on(String meal, String cookingDate) {
-        this.meal = meal;
-        this.cookingDate = cookingDate;
+    public void the_chef_has_a_scheduled_cooking_task_for_on(String mealName, String cookingDateStr) {
+        LocalDate date = LocalDate.parse(cookingDateStr, formatter);
+        meal = new Meal(mealName, 0.0);
+        meal.setCookingDate(date.atStartOfDay());
     }
 
     @When("the system sends a notification for the cooking task")
     public void the_system_sends_a_notification_for_the_cooking_task() {
-        this.chefNotification = "Cooking Task: Prepare " + meal + " on " + cookingDate;
+        chefNotification = reminderService.createCookingNotificationMessage(meal);
     }
 
     @Then("the chef should receive a notification message: {string}")
