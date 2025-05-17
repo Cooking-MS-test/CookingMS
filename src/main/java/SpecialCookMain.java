@@ -14,6 +14,8 @@ import java.util.*;
 
 
 public class SpecialCookMain {
+    private static final String INVALID_CHOICE_MSG = "Invalid choice!";
+
     private static Scanner scanner = new Scanner(System.in);
     private static List<Customer> customers = new ArrayList<>();
     private static List<Chef> chefs = new ArrayList<>();
@@ -43,7 +45,8 @@ public class SpecialCookMain {
                     System.out.println("Exiting system...");
                     running = false;
                 }
-                default -> System.out.println("Invalid choice!");
+                default -> System.out.println(INVALID_CHOICE_MSG);
+
             }
         }
     }
@@ -65,6 +68,7 @@ public class SpecialCookMain {
     }
 
     private static void adminMenu() {
+
         while (true) {
             System.out.println("\n===== ADMIN MENU =====");
             System.out.println("1. Add New Customer");
@@ -87,7 +91,8 @@ public class SpecialCookMain {
                 case 6 -> viewAllMeals();
                 case 7 -> generateFinancialReport();
                 case 8 -> { return; }
-                default -> System.out.println("Invalid choice!");
+                default -> System.out.println(INVALID_CHOICE_MSG);
+
             }
         }
     }
@@ -190,7 +195,8 @@ public class SpecialCookMain {
                     }
                 }
                 case 3 -> { return; }
-                default -> System.out.println("Invalid choice!");
+                default -> System.out.println(INVALID_CHOICE_MSG);
+
             }
         }
     }
@@ -225,7 +231,8 @@ public class SpecialCookMain {
                 case 3 -> viewPastOrders(currentCustomer);
                 case 4 -> setDietaryPreferences(currentCustomer);
                 case 5 -> { return; }
-                default -> System.out.println("Invalid choice!");
+                default -> System.out.println(INVALID_CHOICE_MSG);
+
             }
         }
     }
