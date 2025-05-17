@@ -25,8 +25,8 @@ public class Ingredient {
 
     public Ingredient(String name) {
         this.name = name;
-        this.isAvailable = isAvailable;
-        this.restrictions = restrictions;
+
+
     }
 
     public Ingredient(String name, Set<String> dietaryFlags) {
