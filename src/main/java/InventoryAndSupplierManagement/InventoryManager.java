@@ -29,7 +29,7 @@ public class InventoryManager {
     public void checkAndReorder(Ingredient ingredient) {
         if (ingredient.needsRestocking()) {
             double price = supplierService.fetchCurrentPrice(ingredient.getName());
-            double orderQty = ingredient.getThreshold() * 2; // Example logic
+            double orderQty = ingredient.getThreshold() * 2.0;
 
             PurchaseOrder po = new PurchaseOrder(
                     ingredient.getName(),
