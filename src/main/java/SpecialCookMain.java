@@ -15,6 +15,7 @@ import java.util.*;
 
 public class SpecialCookMain {
     private static final String INVALID_CHOICE_MSG = "Invalid choice!";
+    private static final String ENTER_CUSTOMER_NAME_PROMPT = "Enter customer name: ";
 
     private static Scanner scanner = new Scanner(System.in);
     private static List<Customer> customers = new ArrayList<>();
@@ -98,7 +99,7 @@ public class SpecialCookMain {
     }
 
     private static void addNewCustomer() {
-        System.out.print("Enter customer name: ");
+        System.out.print(ENTER_CUSTOMER_NAME_PROMPT);
         String name = scanner.nextLine();
         System.out.print("Enter customer email: ");
         String email = scanner.nextLine();
@@ -181,7 +182,7 @@ public class SpecialCookMain {
                     // Task viewing logic would go here
                 }
                 case 2 -> {
-                    System.out.print("Enter customer name: ");
+                    System.out.print(ENTER_CUSTOMER_NAME_PROMPT);
                     String customerName = scanner.nextLine();
                     Customer customer = customers.stream()
                             .filter(c -> c.getName().equalsIgnoreCase(customerName))
@@ -202,7 +203,7 @@ public class SpecialCookMain {
     }
 
     private static void customerMenu() {
-        System.out.print("Enter customer name: ");
+        System.out.print(ENTER_CUSTOMER_NAME_PROMPT);
         String customerName = scanner.nextLine();
 
         Customer currentCustomer = customers.stream()
