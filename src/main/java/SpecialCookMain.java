@@ -23,8 +23,9 @@ public class SpecialCookMain {
 
     public static void main(String[] args) {
         initializeSampleData();
+        boolean running = true;
 
-        while (true) {
+        while (running) {
             System.out.println("\n===== Special Cook Management System =====");
             System.out.println("1. Admin");
             System.out.println("2. Chef");
@@ -40,7 +41,7 @@ public class SpecialCookMain {
                 case 3 -> customerMenu();
                 case 4 -> {
                     System.out.println("Exiting system...");
-                    System.exit(0);
+                    running = false;
                 }
                 default -> System.out.println("Invalid choice!");
             }
