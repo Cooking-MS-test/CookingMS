@@ -59,12 +59,12 @@ public class SpecialCookMain {
         availableMeals.add(new Meal("Gluten-Free Dessert", 8.99));
 
         // Sample customer
-        Customer customer = new Customer("John Doe", "john@example.com");
+        Customer customer = new Customer("Ahmad Tubaileh", "Ahmad@hotmail.com");
         customer.setDietaryPreferences("Vegetarian");
         customers.add(customer);
 
         // Sample chef
-        Chef chef = new Chef("Gordon Ramsay", "Gourmet", 0);
+        Chef chef = new Chef("Hadi Ramsay", "Gourmet", 0);
         chefs.add(chef);
     }
 
@@ -221,7 +221,7 @@ public class SpecialCookMain {
             System.out.println("1. View Available Meals");
             System.out.println("2. Place Order");
             System.out.println("3. View Past Orders");
-            System.out.println("4. Set Dietary Preferences");
+            System.out.println("4. Set Dietary Preferences and allergies");
             System.out.println("5. Back to Main Menu");
 
             int choice = Integer.parseInt(scanner.nextLine());
@@ -286,6 +286,9 @@ public class SpecialCookMain {
         System.out.print("Enter dietary preferences: ");
         String preferences = scanner.nextLine();
         customer.setDietaryPreferences(preferences);
+        System.out.print("Enter dietary allergies: ");
+        String allergies = scanner.nextLine();
+        customer.setAllergies(allergies);
         System.out.println("Preferences updated!");
     }
 }
